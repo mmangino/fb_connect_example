@@ -1,0 +1,7 @@
+<h1>Login</h1>
+<% form_tag sessions_path do %>
+  <h2 style="color: red"><%=@error%></h2>
+  <%= text_field_tag :email, params[:email]%>
+  <br />
+  <%= submit_tag "Log Me In"%>
+<% end %>
