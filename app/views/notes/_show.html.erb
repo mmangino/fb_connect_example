@@ -1,0 +1,12 @@
+<% div_for note, :class=>"note" do %>
+  <div class="address">
+    <% if current_user == note.sender %>
+      To: <%=note.recipient.name %>
+    <% else %>
+      From: <%=note.recipient.name %>
+    <% end %>
+  </div>
+  <div class="body">
+    <%= simple_format h(note.body)%>
+  </div>
+<% end %>

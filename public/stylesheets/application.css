@@ -1,0 +1,80 @@
+body {
+	background: #eee;
+	margin: 0px;
+	padding: 0px;
+}
+#header {
+	width:100%;
+	background: #000;
+	color: white;
+	text-align: right;
+}
+#header a,
+#header a:visited {
+	color: white;
+	margin-right: 10px;
+}
+
+#navigation {
+	padding: 10px;
+}
+
+#main_content {
+	width: 800px;
+	margin: auto;
+	border-left: 3px solid #ccc;
+	border-right: 3px solid #ccc;
+	border-bottom: 3px solid #ccc;
+	background: white;
+}
+
+#main_content #main_body {
+	padding: 10px 20px;	
+}
+
+#notice {
+	width: 100%;
+	margin: auto;
+	border-bottom: 2px solid #ffcc66;
+	background: #ffffcc;
+}
+
+#error {
+	width: 100%;
+	margin: auto;
+	background: #ffcccc;
+	border-bottom: 2px solid #cc0000;
+}
+
+#error .content,
+#notice .content {
+	padding: 5px 20px;
+}
+
+.option_container {
+	margin:auto;
+	width: 80%;
+}
+.option_container table td {
+	border: 2px solid #ccc;
+	
+}
+
+.clear {
+	clear:both;
+}
+
+.note {
+	padding-top: 5px;
+	width: 400px;
+	border-top: 1px solid #ccc;
+	margin: 5px;
+}
+
+.note .address {
+	font-weight: bold;
+}
+.note .body {
+	padding-left: 10px;
+}
+

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090226174131) do
+ActiveRecord::Schema.define(:version => 20090226175724) do
 
   create_table "facebook_templates", :force => true do |t|
     t.string "template_name", :null => false
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20090226174131) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "facebook_id"
+    t.string   "facebook_session_key"
   end
 
 end

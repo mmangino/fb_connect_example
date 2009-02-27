@@ -1,2 +1,19 @@
 <h1><%= @user.name%></h1>
+<% if @user == current_user and ! current_user.connected? %>
 
+  <p>Your account isn't currently connected to a Facebook account.</p>
+  <p>To connect your account to facebook, login to facebook using the button below. This will allow you to login via your facebook account and add items to your news feed.</p>
+  <% js = update_page {|page| page.redirect_to create_connection_path}%>
+  <%= fb_login_button js%>
+<% end %>
+
+<h2>Change your settings</h2>
+
+<% form_for current_user do |f|%>
+<h2>Name</h2>
+<%= f.text_field :name %>  
+<h2>Email</h2>
+<%= f.text_field :email %>
+<br />
+<%= submit_tag "Update Settings"%>
+<% end %>

@@ -1,0 +1,7 @@
+<% form_for @note do |f|%>
+  <label>Email Address</label> 
+  <br /><%= f.text_field :recipient_email_address %> <br />
+  <label>Body</label>
+  <br /><%= f.text_area :body %> <br />
+  <%= submit_tag "Send Note"%>
+<% end %>

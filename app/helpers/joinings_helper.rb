@@ -1,0 +1,2 @@
+module JoiningsHelper
+end

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <%= javascript_include_tag :defaults%>
+    <%= stylesheet_link_tag 'application'%>
+    <%= fb_connect_javascript_tag %>
+    <% init_fb_connect "XFBML","Api" do %>
+      <%= fb_user_action(@user_action_to_publish) if @user_action_to_publish%>
+      <%= yield :fb_connect%>
+    <% end %>
+    
+  </head>
+  <body>
+    <div id="header">
+      <div id="navigation">
+        <% if current_user%>
+          <% if facebook_session %>
+            <%= fb_profile_pic facebook_session.user,:facebook_logo=>true,:height=>"24",:width=>"24"%> <%= fb_name current_user,:use_you=>false%> <%= link_to "your account",current_user%> <%= fb_logout_link "logout", logout_path%> 
+          <% else %>
+            Welcome, <%=current_user.name%> <%= link_to "your account",current_user%>  <%= link_to "logout", logout_path%>
+          <% end %>
+        <% else %>
+          <%= link_to "Login", new_session_path%>
+        <% end %>
+      </div>
+    </div>
+    <div id="main_content">
+      <% unless flash[:notice].blank?%>
+        <div id="notice">
+          <div class="content">
+            <p>
+              <%= flash[:notice]%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+      <% unless flash[:error].blank?%>
+        <div id="error">
+          <div class="content">
+            <p>
+              <%= flash[:error]%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+      <div id="main_body">
+        <%= yield%>
+      </div>
+    </div>
+  </body>
+</html>

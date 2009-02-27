@@ -1,0 +1,10 @@
+<%= link_to "send a new note", new_note_path%>
+<h1>Received Notes</h1>
+<% for note in current_user.received_notes%>
+  <%= render :partial=>"show",:locals=>{:note=>note}%>
+<% end %>
+
+<h1>Sent Notes</h1>
+<% for note in current_user.sent_notes%>
+  <%= render :partial=>"show",:locals=>{:note=>note}%>
+<% end %>

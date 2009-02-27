@@ -60,7 +60,7 @@ module Facebooker
     WWW_PATH_INSTALL          = "/install.php"
     
     attr_writer :auth_token
-    attr_reader :session_key
+    attr_reader :session_key, :secret_from_session
     
     def self.create(api_key=nil, secret_key=nil)
       api_key ||= self.api_key
@@ -147,6 +147,10 @@ module Facebooker
       @expires.nil? || (!infinite? && Time.at(@expires) <= Time.now)
     end
     
+    def expires
+      @expires
+    end
+    
     def secured?
       !@session_key.nil? && !expired?
     end
@@ -161,6 +165,7 @@ module Facebooker
       @uid = uid ? Integer(uid) : post('facebook.users.getLoggedInUser', :session_key => session_key)
       @expires = Integer(expires)
       @secret_from_session = secret_from_session
+      true
     end
     
     def fql_query(query, format = 'XML')
@@ -508,6 +513,11 @@ module Facebooker
       @configuration_file_path = path
     end
     
+    def uid
+      @uid || (secure!; @uid)
+    end
+    
+    
     private
       def add_facebook_params(hash, method)
         hash[:method] = method
@@ -537,9 +547,6 @@ module Facebooker
         @service ||= Service.new(Facebooker.api_server_base, Facebooker.api_rest_path, @api_key)      
       end
       
-      def uid
-        @uid || (secure!; @uid)
-      end
       
       def uid?
         !! @uid
