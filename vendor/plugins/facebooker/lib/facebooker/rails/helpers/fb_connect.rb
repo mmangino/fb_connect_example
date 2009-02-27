@@ -37,6 +37,12 @@ module Facebooker
         def fb_login_button(callback=nil)
           content_tag("fb:login-button",nil,(callback.nil? ? {} : {:onlogin=>callback}))
         end
+        def fb_login_and_redirect(url)
+          js = update_page do |page|
+            page.call "FB.Connect.logoutAndRedirect",url
+          end
+          content_tag("fb:login-button",nil,:onlogin=>js)
+        end
         
         def fb_unconnected_friends_count
           content_tag "fb:unconnected-friends-count",nil

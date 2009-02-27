@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-  before_filter :load_facebook_session_without_storing
+  before_filter :create_facebook_session
   before_filter :load_actions_to_publish
   helper_method :facebook_session
   # See ActionController::RequestForgeryProtection for details
