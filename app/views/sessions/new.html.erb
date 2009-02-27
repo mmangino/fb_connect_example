@@ -16,8 +16,7 @@
         <h1>Login via Facebook</h1>
         <p>If you've already connected your account via Facebook, you can login using your facebook 
             username and password.</p>
-        <% js = update_page {|page| page.redirect_to create_session_path}%>
-        <%= fb_login_button js%>
+        <%= fb_login_and_redirect create_session_path%>
       </td>
     </tr>
   </table>
