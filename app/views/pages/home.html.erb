@@ -1,3 +1,9 @@
+<% content_for :fb_connect do %>
+FB.Facebook.get_sessionState().waitUntilReady(function()
+     {
+         FB.Connect.showPermissionDialog('offline_access');
+     });
+  <% end %>
 <h1>Welcome to notes!</h1>
 <p>
   In this application, you can send notes to your friends. You can log in using facebook connect and publish items to your news feed.
@@ -5,3 +11,4 @@
 <p>
   To get started, <%= link_to "signup for an account", new_user_path%>
 </p>
+<fb:prompt-permission perms="offline_access">Give me access</fb:prompt-permission>

@@ -1,13 +1,4 @@
 class UserPublisher < Facebooker::Rails::Publisher
-  def connected_template
-    one_line_story_template "{*actor*} connected their account!"
-    short_story_template "{*actor*} connected their account!", "Connect your account too!"
-  end
-  
-  def connected(user)
-    send_as :user_action
-    from user
-  end
   
   def note_sent_template
     one_line_story_template "{*actor*} sent a note using notes!"
@@ -16,8 +7,18 @@ class UserPublisher < Facebooker::Rails::Publisher
   end
   
   def note_sent(note,facebook_session)
-    send_as :user_action
+    send_as :publish_stream
     from facebook_session.user
-    data :short_note_body=>simple_format(h(truncate(note.body,:length=>20))),:note_body=>simple_format(h(note.body))
+    a = Facebooker::Attachment.new
+    a.name = "#{facebook_session.user.name} sent a not using notes!"
+    a.href = note_url(note)
+    a.description = truncate(note.body,:length=>100)
+    attachment a
+    action_links [action_link("Use notes now!",root_url)]
   end
+  
+  def default_url_options
+    {:canvas=>false,:host=>HOST}
+  end
+  
 end
